@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sooltluck 2025 Party Report</title>
+    <title>술트럭파티 리포트</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #0a0a12;
@@ -157,80 +160,103 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: 40px;
         }
+
+        .custom-legend {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .color-box {
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <h1>Sooltluck 2025</h1>
-        <div class="subtitle">OFFICIAL TASTING REPORT</div>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Sooltluck Party, 3rd</h1>
+            <div class="subtitle">2025.11.22, Sat</div>
+        </header>
 
-    <!-- Section 1: Overall Ranking -->
-    <div class="grid">
-        <div class="card full-width">
-            <h2 class="section-title">🏆 Overall Liquor Ranking</h2>
-            <div class="chart-container">
-                <canvas id="rankingChart"></canvas>
+        <!-- Section 1: Overall Ranking -->
+        <div class="grid">
+            <div class="card full-width">
+                <h2 class="section-title">🏆 전체 주류 순위</h2>
+                <div class="custom-legend">
+                    <div class="legend-item"><span class="color-box" style="background: #00ffcc;"></span>전통주</div>
+                    <div class="legend-item"><span class="color-box" style="background: #ffd700;"></span>위스키</div>
+                    <div class="legend-item"><span class="color-box" style="background: #ff00ff;"></span>와인</div>
+                    <div class="legend-item"><span class="color-box" style="background: #00ccff;"></span>기타</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="rankingChart"></canvas>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Section 2: Averages Comparison -->
-    <div class="grid">
-        <div class="card">
-            <h2 class="section-title">📊 Category Averages</h2>
-            <div class="chart-container" style="height: 300px;">
-                <canvas id="categoryChart"></canvas>
+        <!-- Section 2: Averages Comparison -->
+        <div class="grid">
+            <div class="card">
+                <h2 class="section-title">📊 주종별 평균 점수</h2>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Section 3: Top 5 by Age -->
+        <h2 class="section-title">🎂 연령대별 Top 5</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 style="color: var(--neon-blue); margin-top:0;">20대의 선택</h3>
+                <ul class="rank-list" id="top20s"></ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--neon-pink); margin-top:0;">30대의 선택</h3>
+                <ul class="rank-list" id="top30s"></ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--neon-gold); margin-top:0;">40대의 선택</h3>
+                <ul class="rank-list" id="top40s"></ul>
             </div>
         </div>
-        <div class="card">
-            <h2 class="section-title">👥 Demographics</h2>
-             <div class="chart-container" style="height: 300px;">
-                <canvas id="demographicChart"></canvas>
+
+        <!-- Section 4: Top 5 by Gender -->
+        <h2 class="section-title">👫 성별 Top 5</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 style="color: var(--neon-blue); margin-top:0;">Gentlemen's Pick</h3>
+                <ul class="rank-list" id="topMale"></ul>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--neon-pink); margin-top:0;">Ladies' Pick</h3>
+                <ul class="rank-list" id="topFemale"></ul>
             </div>
         </div>
+
+        <footer>
+            Made by Jongkook | Sooltluck Party, 3rd
+        </footer>
     </div>
 
-    <!-- Section 3: Top 5 by Age -->
-    <h2 class="section-title">🎂 Top 5 by Age Group</h2>
-    <div class="grid">
-        <div class="card">
-            <h3 style="color: var(--neon-blue); margin-top:0;">20s Choice</h3>
-            <ul class="rank-list" id="top20s"></ul>
-        </div>
-        <div class="card">
-            <h3 style="color: var(--neon-pink); margin-top:0;">30s Choice</h3>
-            <ul class="rank-list" id="top30s"></ul>
-        </div>
-        <div class="card">
-            <h3 style="color: var(--neon-gold); margin-top:0;">40s Choice</h3>
-            <ul class="rank-list" id="top40s"></ul>
-        </div>
-    </div>
-
-    <!-- Section 4: Top 5 by Gender -->
-    <h2 class="section-title">👫 Top 5 by Gender</h2>
-    <div class="grid">
-        <div class="card">
-            <h3 style="color: var(--neon-blue); margin-top:0;">Gentlemen's Pick</h3>
-            <ul class="rank-list" id="topMale"></ul>
-        </div>
-        <div class="card">
-            <h3 style="color: var(--neon-pink); margin-top:0;">Ladies' Pick</h3>
-            <ul class="rank-list" id="topFemale"></ul>
-        </div>
-    </div>
-
-    <footer>
-        Generated by Antigravity | Sooltluck 2025
-    </footer>
-</div>
-
-<script>
-    // Raw CSV Data
-    const csvData = `
+    <script>
+        // Raw CSV Data
+        const csvData = `
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,나이대,30대,20대,30대,20대,20대,20대,20대,40대,40대,20대,30대,30대,40대,20대,30대,20대,30대,
 ,,,,성별,남,남,남,여,여,남,여,남,남,여,남,여,남,여,남,남,남,
@@ -258,253 +284,251 @@
 ,,리큐르,복분자주 (비매품),21,1,3.5,2,4,,2.5,5,4,,3.5,4,3,4,4,5,3,4.5,3.53
 ,O,증류주,삭 SAK 블랙 50,22,1,3.7,2,,,3,2,4,2.5,3.5,3,2,3,3,5,4,4.5,3.08
 ,,사케,스이게이 토쿠베츠 준마이 (Drunken Whale),23,2,3.9,2,,,3.2,3,,3.5,,3,1.5,5,3,4.5,3,4.5,3.24
-,,위스키,THE GLENLEE 블렌디드 스카치 위스키 BATCH NO:2,24,3,4.2,4,,,1.8,2,4,4,3.2,3,20,4,4,4,4,4.5,4.65
+,,위스키,THE GLENLEE 블렌디드 스카치 위스키 BATCH NO:2,24,3,4.2,4,,,1.8,2,4,4,3.2,3,2,4,4,4,4,4.5,3.45
 ,,위스키,Laproaig Quater cask,25,3,4.7,5,,,4.5,3,4,3.5,,3,3,3,3,3.5,4,3,3.59
 ,,위스키,Ardbeg Corryvreckan,26,3,4.5,4.5,,,5,5,3,5,4.3,4,4,3,3.5,3.5,4,3,3.95
 ,O,소주,"백제소주, 술 익는 집 에디션",27,1,2.4,3,,,2.9,4,2,2.5,,3,0,4,4,5,4,3.5,2.95
 ,,일본 소주,DAIYAME Hamada Syuzou (고구마 소주),28,2,2.8,3,1,,3,4,3.5,3,,3,3,3,4,3,3,3.5,2.99
 ,,위스키,"필리핀 위스키, 오크 캐스크",29,2,4.7,3,2,,3.4,4,,,3.6,3,4,4,4.5,4,4,2,3.44
+,,,,,2.07,3.73,2.93,3.22,2.87,3.36,3.28,3.31,3.21,3.18,3.14,2.38,3.41,3.66,3.84,3.21,3.10,3.18
 `;
 
-    // --- Data Parsing Logic ---
-    function parseCSV(csv) {
-        const lines = csv.trim().split('\n');
-        
-        // Line 2: Age Groups (Index 5 to 21)
-        const ageLine = lines[1].split(',');
-        const ages = ageLine.slice(5, 22); // 17 evaluators
+        // --- Data Parsing Logic ---
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
 
-        // Line 3: Gender (Index 5 to 21)
-        const genderLine = lines[2].split(',');
-        const genders = genderLine.slice(5, 22);
+            // Line 2: Age Groups (Index 5 to 21)
+            const ageLine = lines[1].split(',');
+            const ages = ageLine.slice(5, 22); // 17 evaluators
 
-        // Line 5 onwards: Liquor Data
-        const liquors = [];
-        
-        for (let i = 4; i < lines.length; i++) {
-            const line = lines[i];
-            if (!line.trim() || line.startsWith(',,,,,')) continue; // Skip empty or summary lines
+            // Line 3: Gender (Index 5 to 21)
+            const genderLine = lines[2].split(',');
+            const genders = genderLine.slice(5, 22);
 
-            // Handle quoted strings (e.g., "Name, with comma")
-            // Simple regex split won't work perfectly for nested commas, but let's try a robust split
-            // Or since we know the structure, we can be smarter.
-            // Actually, let's use a simple regex for CSV splitting that handles quotes
-            const row = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
-            // The above regex is a bit flaky. Let's write a proper simple parser or just handle the specific known quotes.
-            // Given the data, names are in quotes if they contain commas.
-            
-            // Better approach: Split by comma, but rejoin if inside quotes.
-            const parts = [];
-            let current = '';
-            let inQuote = false;
-            
-            for(let char of line) {
-                if(char === '"') {
-                    inQuote = !inQuote;
-                } else if(char === ',' && !inQuote) {
-                    parts.push(current);
-                    current = '';
-                } else {
-                    current += char;
-                }
-            }
-            parts.push(current);
+            // Line 5 onwards: Liquor Data
+            const liquors = [];
 
-            // Clean up parts (remove surrounding quotes)
-            const cleanParts = parts.map(p => p.trim().replace(/^"|"$/g, ''));
+            for (let i = 4; i < lines.length; i++) {
+                const line = lines[i];
+                if (!line.trim() || line.startsWith(',,,,,')) continue; // Skip empty or summary lines
 
-            const isTraditional = cleanParts[1] === 'O';
-            const type = cleanParts[2];
-            const name = cleanParts[3];
-            const scores = cleanParts.slice(5, 22).map(s => s === '' ? null : parseFloat(s));
-            
-            // Calculate average (ignoring nulls)
-            const validScores = scores.filter(s => s !== null);
-            const average = validScores.reduce((a, b) => a + b, 0) / validScores.length;
+                // Handle quoted strings (e.g., "Name, with comma")
+                // Simple regex split won't work perfectly for nested commas, but let's try a robust split
+                // Or since we know the structure, we can be smarter.
+                // Actually, let's use a simple regex for CSV splitting that handles quotes
+                const row = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+                // The above regex is a bit flaky. Let's write a proper simple parser or just handle the specific known quotes.
+                // Given the data, names are in quotes if they contain commas.
 
-            liquors.push({
-                isTraditional,
-                type,
-                name,
-                scores,
-                average
-            });
-        }
-        
-        return { ages, genders, liquors };
-    }
+                // Better approach: Split by comma, but rejoin if inside quotes.
+                const parts = [];
+                let current = '';
+                let inQuote = false;
 
-    const data = parseCSV(csvData);
-
-    // --- Data Processing ---
-
-    // 1. Overall Ranking
-    const sortedByAvg = [...data.liquors].sort((a, b) => b.average - a.average);
-
-    // 2. Category Averages
-    function getCategoryAvg(filterFn) {
-        const filtered = data.liquors.filter(filterFn);
-        if (filtered.length === 0) return 0;
-        const sum = filtered.reduce((acc, curr) => acc + curr.average, 0);
-        return sum / filtered.length;
-    }
-
-    const avgTraditional = getCategoryAvg(l => l.isTraditional);
-    const avgWhisky = getCategoryAvg(l => l.type.includes('위스키'));
-    const avgWine = getCategoryAvg(l => l.type.includes('와인'));
-    const avgOverall = getCategoryAvg(() => true);
-
-    // 3. Top 5 by Age/Gender
-    function getTop5By(filterIndexFn) {
-        // Calculate average for each liquor based ONLY on specific evaluators
-        const ranked = data.liquors.map(l => {
-            const relevantScores = l.scores.filter((_, idx) => filterIndexFn(idx));
-            const validScores = relevantScores.filter(s => s !== null);
-            const avg = validScores.length ? validScores.reduce((a, b) => a + b, 0) / validScores.length : -1;
-            return { ...l, specificAvg: avg };
-        }).sort((a, b) => b.specificAvg - a.specificAvg);
-        
-        return ranked.slice(0, 5);
-    }
-
-    const top20s = getTop5By(idx => data.ages[idx] === '20대');
-    const top30s = getTop5By(idx => data.ages[idx] === '30대');
-    const top40s = getTop5By(idx => data.ages[idx] === '40대');
-
-    const topMale = getTop5By(idx => data.genders[idx] === '남');
-    const topFemale = getTop5By(idx => data.genders[idx] === '여');
-
-    // --- Rendering ---
-
-    // Chart Global Defaults
-    Chart.defaults.color = '#a0a0a0';
-    Chart.defaults.font.family = "'Outfit', sans-serif";
-
-    // 1. Ranking Chart
-    new Chart(document.getElementById('rankingChart'), {
-        type: 'bar',
-        data: {
-            labels: sortedByAvg.map(l => l.name.length > 15 ? l.name.substring(0, 15) + '...' : l.name),
-            datasets: [{
-                label: 'Average Score',
-                data: sortedByAvg.map(l => l.average),
-                backgroundColor: sortedByAvg.map(l => {
-                    if (l.type.includes('위스키')) return 'rgba(255, 215, 0, 0.7)'; // Gold
-                    if (l.type.includes('와인')) return 'rgba(255, 0, 255, 0.7)'; // Pink
-                    if (l.isTraditional) return 'rgba(0, 255, 204, 0.7)'; // Mint
-                    return 'rgba(0, 204, 255, 0.7)'; // Blue
-                }),
-                borderColor: sortedByAvg.map(l => {
-                    if (l.type.includes('위스키')) return '#ffd700';
-                    if (l.type.includes('와인')) return '#ff00ff';
-                    if (l.isTraditional) return '#00ffcc';
-                    return '#00ccff';
-                }),
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: (ctx) => `${ctx.raw.toFixed(2)} / 5.0`
+                for (let char of line) {
+                    if (char === '"') {
+                        inQuote = !inQuote;
+                    } else if (char === ',' && !inQuote) {
+                        parts.push(current);
+                        current = '';
+                    } else {
+                        current += char;
                     }
                 }
+                parts.push(current);
+
+                // Clean up parts (remove surrounding quotes)
+                const cleanParts = parts.map(p => p.trim().replace(/^"|"$/g, ''));
+
+                const isTraditional = cleanParts[1] === 'O';
+                const type = cleanParts[2];
+                const name = cleanParts[3];
+                const scores = cleanParts.slice(5, 22).map(s => s === '' ? null : parseFloat(s));
+
+                // Calculate average (ignoring nulls)
+                const validScores = scores.filter(s => s !== null);
+                const average = validScores.reduce((a, b) => a + b, 0) / validScores.length;
+
+                liquors.push({
+                    isTraditional,
+                    type,
+                    name,
+                    scores,
+                    average
+                });
+            }
+
+            return { ages, genders, liquors };
+        }
+
+        const data = parseCSV(csvData);
+
+        // --- Data Processing ---
+
+        // 1. Overall Ranking
+        const sortedByAvg = [...data.liquors].sort((a, b) => b.average - a.average);
+
+        // 2. Category Averages
+        function getCategoryAvg(filterFn) {
+            const filtered = data.liquors.filter(filterFn);
+            if (filtered.length === 0) return 0;
+            const sum = filtered.reduce((acc, curr) => acc + curr.average, 0);
+            return sum / filtered.length;
+        }
+
+        const avgTraditional = getCategoryAvg(l => l.isTraditional);
+        const avgWhisky = getCategoryAvg(l => l.type.includes('위스키'));
+        const avgWine = getCategoryAvg(l => l.type.includes('와인'));
+        const avgOverall = getCategoryAvg(() => true);
+
+        // 3. Top 5 by Age/Gender
+        function getTop5By(filterIndexFn) {
+            // Calculate average for each liquor based ONLY on specific evaluators
+            const ranked = data.liquors.map(l => {
+                const relevantScores = l.scores.filter((_, idx) => filterIndexFn(idx));
+                const validScores = relevantScores.filter(s => s !== null);
+                const avg = validScores.length ? validScores.reduce((a, b) => a + b, 0) / validScores.length : -1;
+                return { ...l, specificAvg: avg };
+            }).sort((a, b) => b.specificAvg - a.specificAvg);
+
+            return ranked.slice(0, 5);
+        }
+
+        const top20s = getTop5By(idx => data.ages[idx] === '20대');
+        const top30s = getTop5By(idx => data.ages[idx] === '30대');
+        const top40s = getTop5By(idx => data.ages[idx] === '40대');
+
+        const topMale = getTop5By(idx => data.genders[idx] === '남');
+        const topFemale = getTop5By(idx => data.genders[idx] === '여');
+
+        // --- Rendering ---
+
+        // Chart Global Defaults
+        Chart.defaults.color = '#a0a0a0';
+        Chart.defaults.font.family = "'Outfit', sans-serif";
+
+        // 1. Ranking Chart
+        new Chart(document.getElementById('rankingChart'), {
+            type: 'bar',
+            data: {
+                labels: sortedByAvg.map(l => l.name.length > 15 ? l.name.substring(0, 15) + '...' : l.name),
+                datasets: [{
+                    label: '평균 점수',
+                    data: sortedByAvg.map(l => l.average),
+                    backgroundColor: sortedByAvg.map(l => {
+                        if (l.type.includes('위스키')) return 'rgba(255, 215, 0, 0.7)'; // Gold
+                        if (l.type.includes('와인')) return 'rgba(255, 0, 255, 0.7)'; // Pink
+                        if (l.isTraditional) return 'rgba(0, 255, 204, 0.7)'; // Mint
+                        return 'rgba(0, 204, 255, 0.7)'; // Blue
+                    }),
+                    borderColor: sortedByAvg.map(l => {
+                        if (l.type.includes('위스키')) return '#ffd700';
+                        if (l.type.includes('와인')) return '#ff00ff';
+                        if (l.isTraditional) return '#00ffcc';
+                        return '#00ccff';
+                    }),
+                    borderWidth: 1
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 5,
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `${ctx.raw.toFixed(2)} / 5.0`
+                        }
+                    }
                 },
-                x: {
-                    grid: { display: false }
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 5,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
                 }
             }
-        }
-    });
+        });
 
-    // 2. Category Chart
-    new Chart(document.getElementById('categoryChart'), {
-        type: 'radar',
-        data: {
-            labels: ['Traditional', 'Whisky', 'Wine', 'Overall'],
-            datasets: [{
-                label: 'Average Score',
-                data: [avgTraditional, avgWhisky, avgWine, avgOverall],
-                backgroundColor: 'rgba(0, 255, 204, 0.2)',
-                borderColor: '#00ffcc',
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#00ffcc',
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                r: {
-                    angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                    pointLabels: { color: '#fff', font: { size: 14 } },
-                    suggestedMin: 2,
-                    suggestedMax: 4
-                }
-            }
-        }
-    });
+        const countTraditional = data.liquors.filter(l => l.isTraditional).length;
+        const countWhisky = data.liquors.filter(l => l.type.includes('위스키')).length;
+        const countWine = data.liquors.filter(l => l.type.includes('와인')).length;
 
-    // 3. Demographics Chart (Extra visualization for context)
-    // Count demographics
-    const ageCounts = { '20s': 0, '30s': 0, '40s': 0 };
-    data.ages.forEach(a => {
-        if(a === '20대') ageCounts['20s']++;
-        if(a === '30대') ageCounts['30s']++;
-        if(a === '40대') ageCounts['40s']++;
-    });
-    
-    const genderCounts = { 'Male': 0, 'Female': 0 };
-    data.genders.forEach(g => {
-        if(g === '남') genderCounts['Male']++;
-        if(g === '여') genderCounts['Female']++;
-    });
-
-    new Chart(document.getElementById('demographicChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['20s', '30s', '40s', 'Male', 'Female'],
-            datasets: [
-                {
-                    data: [ageCounts['20s'], ageCounts['30s'], ageCounts['40s']],
-                    backgroundColor: ['#ff00ff', '#00ffcc', '#ffd700'],
-                    label: 'Age'
+        // 2. Category Chart
+        new Chart(document.getElementById('categoryChart'), {
+            data: {
+                labels: [`전통주 (${countTraditional})`, `위스키 (${countWhisky})`, `와인 (${countWine})`],
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: '평균 점수',
+                        data: [avgTraditional, avgWhisky, avgWine],
+                        backgroundColor: [
+                            'rgba(0, 255, 204, 0.7)', // Traditional (Mint)
+                            'rgba(255, 215, 0, 0.7)', // Whisky (Gold)
+                            'rgba(255, 0, 255, 0.7)', // Wine (Pink)
+                        ],
+                        borderColor: [
+                            '#00ffcc',
+                            '#ffd700',
+                            '#ff00ff',
+                        ],
+                        borderWidth: 1,
+                        order: 2
+                    },
+                    {
+                        type: 'line',
+                        label: `전체 평균 (29개, ${avgOverall.toFixed(2)})`,
+                        data: [avgOverall, avgOverall, avgOverall],
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false,
+                        order: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: { color: '#a0a0a0' }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)} / 5.0`
+                        }
+                    }
                 },
-                {
-                    data: [genderCounts['Male'], genderCounts['Female']],
-                    backgroundColor: ['#00ccff', '#ff66b2'],
-                    label: 'Gender'
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 5,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
                 }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'right' }
             }
-        }
-    });
+        });
 
 
-    // Render Lists
-    function renderList(elementId, items) {
-        const el = document.getElementById(elementId);
-        items.forEach((item, index) => {
-            const li = document.createElement('li');
-            li.className = 'rank-item';
-            li.innerHTML = `
+
+        // Render Lists
+        function renderList(elementId, items) {
+            const el = document.getElementById(elementId);
+            items.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'rank-item';
+                li.innerHTML = `
                 <div class="rank-num">${index + 1}</div>
                 <div class="rank-info">
                     <span class="rank-name">${item.name}</span>
@@ -512,16 +536,17 @@
                 </div>
                 <div class="rank-score">${item.specificAvg.toFixed(2)}</div>
             `;
-            el.appendChild(li);
-        });
-    }
+                el.appendChild(li);
+            });
+        }
 
-    renderList('top20s', top20s);
-    renderList('top30s', top30s);
-    renderList('top40s', top40s);
-    renderList('topMale', topMale);
-    renderList('topFemale', topFemale);
+        renderList('top20s', top20s);
+        renderList('top30s', top30s);
+        renderList('top40s', top40s);
+        renderList('topMale', topMale);
+        renderList('topFemale', topFemale);
 
-</script>
+    </script>
 </body>
+
 </html>
