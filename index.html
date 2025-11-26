@@ -16,9 +16,9 @@
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
             --neon-pink: #ff00ff;
-            --neon-mint: #00ffcc;
+            --neon-mint: #00ff96;
             --neon-gold: #ffd700;
-            --neon-blue: #00ccff;
+            --neon-blue: #0096ff;
         }
 
         body {
@@ -197,10 +197,10 @@
             <div class="card full-width">
                 <h2 class="section-title">🏆 전체 주류 순위</h2>
                 <div class="custom-legend">
-                    <div class="legend-item"><span class="color-box" style="background: #00ffcc;"></span>전통주</div>
+                    <div class="legend-item"><span class="color-box" style="background: #00ff96;"></span>전통주</div>
                     <div class="legend-item"><span class="color-box" style="background: #ffd700;"></span>위스키</div>
                     <div class="legend-item"><span class="color-box" style="background: #ff00ff;"></span>와인</div>
-                    <div class="legend-item"><span class="color-box" style="background: #00ccff;"></span>기타</div>
+                    <div class="legend-item"><span class="color-box" style="background: #0096ff;"></span>기타</div>
                 </div>
                 <div class="chart-container">
                     <canvas id="rankingChart"></canvas>
@@ -409,42 +409,59 @@
 
         // 1. Ranking Chart
         new Chart(document.getElementById('rankingChart'), {
-            type: 'bar',
             data: {
                 labels: sortedByAvg.map(l => l.name.length > 15 ? l.name.substring(0, 15) + '...' : l.name),
-                datasets: [{
-                    label: '평균 점수',
-                    data: sortedByAvg.map(l => l.average),
-                    backgroundColor: sortedByAvg.map(l => {
-                        if (l.type.includes('위스키')) return 'rgba(255, 215, 0, 0.7)'; // Gold
-                        if (l.type.includes('와인')) return 'rgba(255, 0, 255, 0.7)'; // Pink
-                        if (l.isTraditional) return 'rgba(0, 255, 204, 0.7)'; // Mint
-                        return 'rgba(0, 204, 255, 0.7)'; // Blue
-                    }),
-                    borderColor: sortedByAvg.map(l => {
-                        if (l.type.includes('위스키')) return '#ffd700';
-                        if (l.type.includes('와인')) return '#ff00ff';
-                        if (l.isTraditional) return '#00ffcc';
-                        return '#00ccff';
-                    }),
-                    borderWidth: 1
-                }]
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: '평균 점수',
+                        data: sortedByAvg.map(l => l.average),
+                        backgroundColor: sortedByAvg.map(l => {
+                            if (l.type.includes('위스키')) return 'rgba(255, 215, 0, 0.7)'; // Gold
+                            if (l.type.includes('와인')) return 'rgba(255, 0, 255, 0.7)'; // Pink
+                            if (l.isTraditional) return 'rgba(0, 255, 150, 0.7)'; // Green (Traditional)
+                            return 'rgba(0, 150, 255, 0.7)'; // Blue (Others)
+                        }),
+                        borderColor: sortedByAvg.map(l => {
+                            if (l.type.includes('위스키')) return '#ffd700';
+                            if (l.type.includes('와인')) return '#ff00ff';
+                            if (l.isTraditional) return '#00ff96';
+                            return '#0096ff';
+                        }),
+                        borderWidth: 1,
+                        order: 2
+                    },
+                    {
+                        type: 'line',
+                        label: `전체 평균 (29개, ${avgOverall.toFixed(2)})`,
+                        data: Array(sortedByAvg.length).fill(avgOverall),
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false,
+                        order: 1
+                    }
+                ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false },
+                    legend: {
+                        display: true,
+                        labels: { color: '#a0a0a0' }
+                    },
                     tooltip: {
                         callbacks: {
-                            label: (ctx) => `${ctx.raw.toFixed(2)} / 5.0`
+                            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)} / 5.0`
                         }
                     }
                 },
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        max: 5,
+                        min: 1.0,
+                        max: 4.5,
                         grid: { color: 'rgba(255, 255, 255, 0.1)' }
                     },
                     x: {
@@ -468,12 +485,12 @@
                         label: '평균 점수',
                         data: [avgTraditional, avgWhisky, avgWine],
                         backgroundColor: [
-                            'rgba(0, 255, 204, 0.7)', // Traditional (Mint)
+                            'rgba(0, 255, 150, 0.7)', // Traditional (Green)
                             'rgba(255, 215, 0, 0.7)', // Whisky (Gold)
                             'rgba(255, 0, 255, 0.7)', // Wine (Pink)
                         ],
                         borderColor: [
-                            '#00ffcc',
+                            '#00ff96',
                             '#ffd700',
                             '#ff00ff',
                         ],
