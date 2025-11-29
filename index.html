@@ -11,6 +11,10 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap"
         rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         :root {
             --bg-color: #111111;
             --card-bg: #1C1C1C;
@@ -25,13 +29,22 @@
             --border-color: #333333;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Outfit', 'Noto Sans KR', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         .container {
@@ -194,6 +207,19 @@
 
             .host-text, .host-image {
                 padding: 24px !important;
+            }
+
+            /* Mobile Spacing Adjustment */
+            .intro-text {
+                margin: 80px auto 80px !important;
+            }
+            .bottle-gallery {
+                margin-top: 80px !important; 
+                margin-bottom: 80px !important;
+            }
+            .grid.grid-two-columns {
+                margin-top: 80px !important;
+                margin-bottom: 80px !important;
             }
         }
 
@@ -415,21 +441,29 @@
         }
 
         .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 100%;
+            max-height: 100dvh; /* 모바일 브라우저 대응 */
             object-fit: contain;
-            border-radius: 8px;
+            padding: 10px;
         }
 
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 35px;
+            top: 10px;
+            right: 10px;
             color: #fff;
-            font-size: 40px;
+            font-size: 2rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         .lightbox-close:hover {
