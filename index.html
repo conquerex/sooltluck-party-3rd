@@ -91,7 +91,7 @@
 
         .liquor-list-section {
             margin-bottom: 0;
-            padding: 0 20px;
+            padding: 0;
         }
 
         .liquor-list-section .section-title {
@@ -176,6 +176,10 @@
         @media (max-width: 900px) {
             .table-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .grid[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -308,6 +312,67 @@
             margin-right: 8px;
             border-radius: 2px;
         }
+
+        .bottle-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .bottle-gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .bottle-gallery img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #bbb;
+        }
     </style>
 </head>
 
@@ -321,7 +386,7 @@
                 <div class="intro-text">
                     2025년 11월 22일, 오후 6시 30분. 서울 강남역 인근의 세모네모에서 3번째 술트럭파티가 열렸습니다. 호스트를 포함하여 18명의 참여자가 모였습니다. 참여자가 가지고 온
                     (중복
-                    제외) 32종의 주류를 시음했습니다. 아래는 시음한 주류입니다. 시음 순서에 맞게 작성하였습니다.
+                    제외) 32종의 주류를 시음했습니다. 아래는 시음한 주류입니다. 숫자(No.)는 시음 순서 입니다.
                 </div>
             </header>
 
@@ -533,7 +598,24 @@
                         </tbody>
                     </table>
                 </div>
+                <p style="margin: 15px 0 0 0; padding: 20px 0; line-height: 1.8; color: var(--text-main);">
+                    시음 주류 목록에는 33개의 주류가 있지만 9번과 18번은 동일한 술입니다. 또한 29번까지 시음 평가를 했고 30~33번은 이벤트를 통해 시음을 진행했습니다. 0~5점 내에 점수를 매기는 방식으로 시음 평가를 하였습니다.
+                </p>
             </div>
+        </div>
+
+        <div class="container">
+            <div class="bottle-gallery">
+                <img src="img_bottle1.jpeg" alt="시음 주류 사진 1">
+                <img src="img_bottle2.jpeg" alt="시음 주류 사진 2">
+                <img src="img_bottle3.jpeg" alt="시음 주류 사진 3">
+                <img src="img_bottle4.jpeg" alt="시음 주류 사진 4">
+                <img src="img_bottle5.jpeg" alt="시음 주류 사진 5">
+                <img src="img_bottle6.jpeg" alt="시음 주류 사진 6">
+            </div>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; margin-bottom: 40px; font-style: italic;">
+                위 이미지는 참여자 분들께서 촬영하신 주류 사진 입니다.
+            </p>
         </div>
 
         <div class="container">
@@ -558,12 +640,21 @@
             </div>
 
             <!-- Section 2: Averages Comparison -->
-            <div class="grid">
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
                 <div class="card">
                     <h2 class="section-title">📊 주종별 평균 점수</h2>
                     <div class="chart-container" style="height: 300px;">
                         <canvas id="categoryChart"></canvas>
                     </div>
+                </div>
+
+                <div style="padding: 24px; line-height: 1.8; color: var(--text-main);">
+                    <p style="margin-bottom: 15px;">
+                        시음은 저도수 주류부터 시작해서 고도수 주류 순서로 진행했습니다. 시음 1위는 Ardbeg Corryvreckan으로 3.95점을 받았습니다. 저도수 부분에서는 BRICCO QUAGLIA MOSCATO D'ASTI가 3.86점으로 1위를 했습니다. 중국 전통주인 황주와 정통 방식의 약주 중 대표 주자인 한산 소곡주는 2점에 미치지 못하며 선호도가 낮음을 알 수 있었습니다. 의도치 않게 Louis Perdrier Brut Excellence은 2번 시음을 하게 되면서 일관성있는지 확인해 볼 수 있었습니다. (9번은 3.02점, 18번은 3.27점)
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        술트럭파티를 참여할 정도로 술을 좋아하는 분들은 위스키를 좋아하는 성향이 있었습니다. 모든 위스키가 평균 이상의 점수를 받았고, 전통주와 와인은 비교적 편차가 있었습니다.
+                    </p>
                 </div>
 
             </div>
@@ -601,6 +692,12 @@
             <footer>
                 Made by Jongkook | Sooltluck Party, 3rd
             </footer>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="lightbox">
+            <span class="lightbox-close">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
         </div>
 
         <script>
@@ -803,6 +900,10 @@
                         },
                         tooltip: {
                             callbacks: {
+                                title: (ctx) => {
+                                    // Show full liquor name in tooltip
+                                    return sortedByAvg[ctx[0].dataIndex].name;
+                                },
                                 label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)} / 5.0`
                             }
                         }
@@ -911,6 +1012,39 @@
             renderList('top40s', top40s);
             renderList('topMale', topMale);
             renderList('topFemale', topFemale);
+
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const galleryImages = document.querySelectorAll('.bottle-gallery img');
+
+            // Open lightbox when clicking on gallery images
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.classList.add('active');
+                    lightboxImg.src = this.src;
+                });
+            });
+
+            // Close lightbox when clicking the close button
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+
+            // Close lightbox with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+            });
 
         </script>
 </body>
