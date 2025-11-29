@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>술트럭파티 리포트</title>
+    <title>3번째 술트럭파티 리포트</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap"
@@ -41,21 +41,29 @@
 
         .top-visual-section {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img_bottle_main.jpeg');
-            background-size: cover, 100% auto;
+            background-size: cover;
             background-repeat: no-repeat;
-            background-position: center top;
-            padding-bottom: 40px;
+            background-position: center center;
             margin-bottom: 40px;
+            
+            /* Initial Full Screen State */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            will-change: height, background-position;
         }
 
         header {
             text-align: center;
-            padding: 80px 0 40px;
+            padding: 0;
             background: transparent;
+            width: 100%;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 5rem;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -64,6 +72,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: none;
+            will-change: font-size;
         }
 
         .subtitle {
@@ -391,13 +400,17 @@
             <header>
                 <h1>Sooltluck Party, 3rd</h1>
                 <div class="subtitle">2025.11.22, Sat</div>
-                <div class="intro-text">
-                    2025년 11월 22일, 오후 6시 30분. 서울 강남역 인근의 세모네모에서 3번째 술트럭파티가 열렸습니다. 호스트를 포함하여 18명의 참여자가 모였습니다. 
-                    그리고 시음 진행자를 제외한 17명이 시음 평가를 진행했습니다. 참여자가 가지고 온 (중복 제외) 32종의 주류를 시음했습니다. 아래는 시음한 주류입니다. 숫자(No.)는 시음 순서 입니다.
-                </div>
             </header>
+        </div>
+    </div>
 
-            <!-- Liquor List Section -->
+    <div class="container">
+        <div class="intro-text" style="background: transparent; padding: 0; margin: 40px auto 60px;">
+            2025년 11월 22일, 오후 6시 30분. 서울 강남역 인근의 세모네모에서 3번째 술트럭파티가 열렸습니다. 호스트를 포함하여 18명의 참여자가 모였습니다. 
+            그리고 시음 진행자를 제외한 17명이 시음 평가를 진행했습니다. 참여자가 가지고 온 (중복 제외) 32종의 주류를 시음했습니다. 아래는 시음한 주류입니다. 숫자(No.)는 시음 순서 입니다.
+        </div>
+
+        <!-- Liquor List Section -->
             <div class="liquor-list-section">
                 <h2 class="section-title">🍾 시음 주류 목록</h2>
                 <div class="table-grid">
@@ -1116,6 +1129,42 @@
                     lightbox.classList.remove('active');
                 }
             });
+
+            // Scroll Animation for Hero Section
+            const heroSection = document.querySelector('.top-visual-section');
+            const heroTitle = document.querySelector('h1');
+
+            function updateHero() {
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const animationDistance = windowHeight * 0.5;
+                
+                let progress = Math.min(scrollY / animationDistance, 1);
+                
+                const minHeroHeight = 400;
+                
+                // 1. Height
+                const startHeight = windowHeight;
+                const currentHeight = startHeight - (startHeight - minHeroHeight) * progress;
+                heroSection.style.height = `${currentHeight}px`;
+                
+                // 2. Font Size
+                const startFont = 5;
+                const endFont = 3.5;
+                const currentFont = startFont - (startFont - endFont) * progress;
+                heroTitle.style.fontSize = `${currentFont}rem`;
+                
+                // 3. Background Position
+                const startBgY = 50;
+                const endBgY = 0;
+                const currentBgY = startBgY - (startBgY - endBgY) * progress;
+                heroSection.style.backgroundPosition = `center ${currentBgY}%`;
+            }
+
+            window.addEventListener('scroll', updateHero);
+            window.addEventListener('resize', updateHero);
+            
+            setTimeout(updateHero, 100);
 
         </script>
 </body>
