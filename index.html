@@ -11,17 +11,17 @@
         rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FAFAF9;
-            --card-bg: #FFFFFF;
-            --text-main: #1F2937;
-            --text-muted: #6B7280;
-            --primary-blue: #2563EB;
-            --secondary-blue: #3B82F6;
-            --accent-orange: #F59E0B;
-            --accent-gold: #FBBF24;
-            --accent-purple: #8B5CF6;
-            --accent-teal: #14B8A6;
-            --border-color: #E5E7EB;
+            --bg-color: #111111;
+            --card-bg: #1C1C1C;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --primary-blue: #60A5FA;
+            --secondary-blue: #60A5FA;
+            --accent-orange: #FBBF24;
+            --accent-gold: #FCD34D;
+            --accent-purple: #A78BFA;
+            --accent-teal: #2DD4BF;
+            --border-color: #333333;
         }
 
         body {
@@ -40,7 +40,7 @@
         }
 
         .top-visual-section {
-            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('img_bottle_main.jpeg');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img_bottle_main.jpeg');
             background-size: cover, 100% auto;
             background-repeat: no-repeat;
             background-position: center top;
@@ -95,10 +95,9 @@
         }
 
         .liquor-list-section .section-title {
-            text-shadow:
-                -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
-                -2px 0 0 #fff, 2px 0 0 #fff, 0 -2px 0 #fff, 0 2px 0 #fff;
+            text-shadow: none;
             font-weight: 700;
+            color: var(--text-main);
         }
 
         .table-grid {
@@ -111,19 +110,20 @@
         .liquor-table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
+            background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .liquor-table th {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: white;
+            background: #2c2c2c;
+            color: var(--text-main);
             padding: 10px 12px;
             text-align: left;
             font-weight: 600;
             font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .liquor-table th:first-child {
@@ -146,7 +146,7 @@
         }
 
         .liquor-table tr:hover {
-            background: rgba(37, 99, 235, 0.05);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .liquor-table .liquor-number {
@@ -166,11 +166,11 @@
         }
 
         .liquor-table .highlight-lemon {
-            background-color: #FFFACD;
+            background-color: rgba(251, 191, 36, 0.15); /* Darker lemon */
         }
 
         .liquor-table .highlight-lemon:hover {
-            background-color: #FFF9C4;
+            background-color: rgba(251, 191, 36, 0.25);
         }
 
         @media (max-width: 900px) {
@@ -205,14 +205,22 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             border-color: var(--primary-blue);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .chart-container {
@@ -604,7 +612,7 @@
         </div>
 
         <div class="container">
-            <div class="bottle-gallery">
+            <div class="bottle-gallery" style="margin-top: 80px; margin-bottom: 40px;">
                 <img src="img_bottle3.jpeg" alt="시음 주류 사진 3">
                 <img src="img_bottle1.jpeg" alt="시음 주류 사진 1">
                 <img src="img_bottle2.jpeg" alt="시음 주류 사진 2">
@@ -612,7 +620,7 @@
                 <img src="img_bottle5.jpeg" alt="시음 주류 사진 5">
                 <img src="img_bottle6.jpeg" alt="시음 주류 사진 6">
             </div>
-            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; margin-bottom: 40px; font-style: italic;">
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; margin-bottom: 200px; font-style: italic;">
                 위 이미지는 참여자분들께서 촬영하신 주류 사진 입니다.
             </p>
         </div>
@@ -659,7 +667,7 @@
             </div>
 
             <!-- Party Photos Gallery -->
-            <div class="bottle-gallery" style="margin: 160px 0; grid-template-columns: 1fr;">
+            <div class="bottle-gallery" style="margin: 240px 0; grid-template-columns: 1fr;">
                 <img src="img_all1.jpg" alt="술트럭파티 현장 사진 1">
                 <img src="img_all2.jpg" alt="술트럭파티 현장 사진 2">
                 <img src="img_all3.jpg" alt="술트럭파티 현장 사진 3">
@@ -702,32 +710,32 @@
             </div>
 
             <!-- Closing Message Section -->
-            <div class="grid grid-two-columns" style="grid-template-columns: 1fr 1fr; margin-top: 80px; align-items: center; gap: 0;">
+            <div class="grid grid-two-columns" style="grid-template-columns: 1fr 1fr; margin-top: 200px; margin-bottom: 160px; align-items: center; gap: 0;">
                 <div style="padding: 24px 0 24px 24px; line-height: 1.8; color: var(--text-main);">
-                    <p style="margin-bottom: 20px; font-weight: 500;">
+                    <p style="margin-bottom: 20px; font-weight: 500; color: var(--text-muted);">
                         참여자 여러분 덕분에 파티가 한층 더 풍성해졌습니다.
                     </p>
                     
-                    <p style="margin-bottom: 5px; color: var(--text-muted);">"진행 전에 호스트와 함께 파티를 준비해주신 분"</p>
-                    <p style="margin-bottom: 5px; color: var(--text-muted);">"술트럭 파티를 다시 찾아와 주신 분"</p>
-                    <p style="margin-bottom: 5px; color: var(--text-muted);">"예쁜 인증샷을 위해 참가용 술을 감각적으로 배치해주신 분"</p>
-                    <p style="margin-bottom: 5px; color: var(--text-muted);">"참가용 술에 얽힌 인상적인 스토리를 들려주신 분"</p>
-                    <p style="margin-bottom: 5px; color: var(--text-muted);">"쉽게 구할 수 없는 귀한 술을 가져와 주신 분"</p>
-                    <p style="margin-bottom: 5px; color: var(--text-muted);">"꼼꼼하게 시음 평가를 남겨주신 분"</p>
-                    <p style="margin-bottom: 20px; color: var(--text-muted);">"뒷풀이까지 텐션 높게 즐겨주신 분"</p>
+                    <p style="margin-bottom: 5px;">"진행 전에 호스트와 함께 파티를 준비해주신 분"</p>
+                    <p style="margin-bottom: 5px;">"술트럭파티를 다시 찾아와 주신 분"</p>
+                    <p style="margin-bottom: 5px;">"예쁜 인증샷을 위해 참가용 술을 감각적으로 배치해주신 분"</p>
+                    <p style="margin-bottom: 5px;">"참가용 술에 얽힌 인상적인 스토리를 들려주신 분"</p>
+                    <p style="margin-bottom: 5px;">"쉽게 구할 수 없는 귀한 술을 가져와 주신 분"</p>
+                    <p style="margin-bottom: 5px;">"꼼꼼하게 시음 평가를 남겨주신 분"</p>
+                    <p style="margin-bottom: 20px;">"뒷풀이까지 텐션 높게 즐겨주신 분"</p>
                     
-                    <p style="margin-bottom: 20px;">
+                    <p style="margin-bottom: 20px; color: var(--text-muted);">
                         모두가 호스트를 도와주시고 함께 즐겨주신 덕분에<br>
                         이번 파티를 열길 잘했다는 생각이 들었습니다.<br>
-                        덕분에 2026년에도 또 한 번 술트럭 파티를 열고 싶어지네요.
+                        2026년에도 또 한 번 술트럭 파티를 열고 싶어지네요.
                     </p>
                     
-                    <p style="margin-bottom: 20px;">
+                    <p style="margin-bottom: 20px; color: var(--text-muted);">
                         어느덧 2025년도 한 달 정도만 남았네요.<br>
                         건강하고 기분 좋은 한 잔과 함께 한 해 잘 마무리하시길 바랍니다. 감사합니다.
                     </p>
                     
-                    <p style="margin-bottom: 0; text-align: center; color: var(--text-muted); font-style: italic;">
+                    <p style="margin-bottom: 0; text-align: center; font-style: italic;">
                         - 호스트 이지원, 손종국 -
                     </p>
                 </div>
@@ -905,8 +913,9 @@
             // --- Rendering ---
 
             // Chart Global Defaults
-            Chart.defaults.color = '#6B7280';
+            Chart.defaults.color = '#9CA3AF'; // Light grey text
             Chart.defaults.font.family = "'Outfit', sans-serif";
+            Chart.defaults.borderColor = '#374151'; // Dark border for grids
 
             // 1. Ranking Chart
             new Chart(document.getElementById('rankingChart'), {
@@ -967,7 +976,7 @@
                         y: {
                             min: 1.0,
                             max: 4.5,
-                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
                         },
                         x: {
                             grid: { display: false }
@@ -1033,7 +1042,7 @@
                         y: {
                             beginAtZero: true,
                             max: 5,
-                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
                         },
                         x: {
                             grid: { display: false }
