@@ -11,14 +11,17 @@
         rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a12;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --neon-pink: #ff00ff;
-            --neon-mint: #00ff96;
-            --neon-gold: #ffd700;
-            --neon-blue: #0096ff;
+            --bg-color: #FAFAF9;
+            --card-bg: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --primary-blue: #2563EB;
+            --secondary-blue: #3B82F6;
+            --accent-orange: #F59E0B;
+            --accent-gold: #FBBF24;
+            --accent-purple: #8B5CF6;
+            --accent-teal: #14B8A6;
+            --border-color: #E5E7EB;
         }
 
         body {
@@ -36,10 +39,19 @@
             padding: 20px;
         }
 
+        .top-visual-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('img_bottle_main.jpeg');
+            background-size: cover, 100% auto;
+            background-repeat: no-repeat;
+            background-position: center top;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+        }
+
         header {
             text-align: center;
-            padding: 60px 0 40px;
-            background: radial-gradient(circle at center, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
+            padding: 80px 0 40px;
+            background: transparent;
         }
 
         h1 {
@@ -47,23 +59,130 @@
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 4px;
-            background: linear-gradient(to right, var(--neon-mint), var(--neon-pink));
+            background: linear-gradient(to right, var(--primary-blue), var(--accent-orange));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            text-shadow: none;
         }
 
         .subtitle {
-            color: var(--neon-gold);
+            color: var(--accent-orange);
             font-size: 1.2rem;
             margin-top: 10px;
             letter-spacing: 2px;
+            font-weight: 500;
+            text-shadow: none;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 30px auto 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            line-height: 1.8;
+            color: var(--text-main);
+            text-align: left;
+            font-size: 0.95rem;
+            backdrop-filter: none;
+            border: none;
+        }
+
+        .liquor-list-section {
+            margin-bottom: 0;
+            padding: 0 20px;
+        }
+
+        .liquor-list-section .section-title {
+            text-shadow:
+                -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
+                -2px 0 0 #fff, 2px 0 0 #fff, 0 -2px 0 #fff, 0 2px 0 #fff;
+            font-weight: 700;
+        }
+
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .liquor-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .liquor-table th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .liquor-table th:first-child {
+            width: 25px;
+            text-align: center;
+        }
+
+        .liquor-table th:nth-child(2) {
+            width: 48px;
+        }
+
+        .liquor-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        .liquor-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .liquor-table tr:hover {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .liquor-table .liquor-number {
+            font-weight: bold;
+            color: var(--accent-orange);
+            text-align: center;
+        }
+
+        .liquor-table .liquor-type {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .liquor-table .liquor-name {
+            color: var(--text-main);
+        }
+
+        .liquor-table .highlight-lemon {
+            background-color: #FFFACD;
+        }
+
+        .liquor-table .highlight-lemon:hover {
+            background-color: #FFF9C4;
+        }
+
+        @media (max-width: 900px) {
+            .table-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .section-title {
             font-size: 1.8rem;
             margin-bottom: 20px;
-            border-left: 4px solid var(--neon-mint);
+            border-left: 4px solid var(--primary-blue);
             padding-left: 15px;
             color: var(--text-main);
             display: flex;
@@ -79,18 +198,17 @@
 
         .card {
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
-            border-color: var(--neon-mint);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+            border-color: var(--primary-blue);
         }
 
         .chart-container {
@@ -109,7 +227,7 @@
             display: flex;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .rank-item:last-child {
@@ -121,8 +239,7 @@
             font-weight: bold;
             width: 20px;
             min-width: 20px;
-            color: var(--neon-gold);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            color: var(--accent-orange);
             flex-shrink: 0;
             text-align: center;
             padding-right: 10px;
@@ -150,7 +267,7 @@
         .rank-score {
             font-size: 1.2rem;
             font-weight: bold;
-            color: var(--neon-pink);
+            color: var(--primary-blue);
             width: 48px;
             min-width: 48px;
             text-align: right;
@@ -167,7 +284,7 @@
             padding: 40px;
             color: var(--text-muted);
             font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-color);
             margin-top: 40px;
         }
 
@@ -196,77 +313,299 @@
 
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Sooltluck Party, 3rd</h1>
-            <div class="subtitle">2025.11.22, Sat</div>
-        </header>
-
-        <!-- Section 1: Overall Ranking -->
-        <div class="grid">
-            <div class="card full-width">
-                <h2 class="section-title">🏆 전체 주류 순위</h2>
-                <div class="custom-legend">
-                    <div class="legend-item"><span class="color-box" style="background: #00ff96;"></span>전통주</div>
-                    <div class="legend-item"><span class="color-box" style="background: #ffd700;"></span>위스키</div>
-                    <div class="legend-item"><span class="color-box" style="background: #ff00ff;"></span>와인</div>
-                    <div class="legend-item"><span class="color-box" style="background: #0096ff;"></span>기타</div>
+    <div class="top-visual-section">
+        <div class="container">
+            <header>
+                <h1>Sooltluck Party, 3rd</h1>
+                <div class="subtitle">2025.11.22, Sat</div>
+                <div class="intro-text">
+                    2025년 11월 22일, 오후 6시 30분. 서울 강남역 인근의 세모네모에서 3번째 술트럭파티가 열렸습니다. 호스트를 포함하여 18명의 참여자가 모였습니다. 참여자가 가지고 온
+                    (중복
+                    제외) 32종의 주류를 시음했습니다. 아래는 시음한 주류입니다. 시음 순서에 맞게 작성하였습니다.
                 </div>
-                <div class="chart-container">
-                    <canvas id="rankingChart"></canvas>
+            </header>
+
+            <!-- Liquor List Section -->
+            <div class="liquor-list-section">
+                <h2 class="section-title">🍾 시음 주류 목록</h2>
+                <div class="table-grid">
+                    <!-- Table 1: Items 1-11 -->
+                    <table class="liquor-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>주종</th>
+                                <th>주류 이름</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="liquor-number">1</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">퓨엔테비나 FUENTEVINA</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">2</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">ROSA REGALE BRACHETTO D'ACQUI 2023</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">3</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">페어히즈 앵커 리제르바, 2022</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">4</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">젬마 디 루나 모스카토, 모스카토</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">5</td>
+                                <td class="liquor-type">황주</td>
+                                <td class="liquor-name">石库门 9년, Shanghai Shikumen (上海老酒)</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">6</td>
+                                <td class="liquor-type">맥주</td>
+                                <td class="liquor-name">Fedora Kölsch</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">7</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">MOSCATO D'ASTI 2024</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">8</td>
+                                <td class="liquor-type">약주</td>
+                                <td class="liquor-name">처음술 한산 소곡주</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">9</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">Louis Perdrier Brut Excellence</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">10</td>
+                                <td class="liquor-type">막걸리</td>
+                                <td class="liquor-name">호랑이 유자 막걸리</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">11</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">SWEET ROSE VINO FRIZZANTE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Table 2: Items 12-22 -->
+                    <table class="liquor-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>주종</th>
+                                <th>주류 이름</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="liquor-number">12</td>
+                                <td class="liquor-type">황주</td>
+                                <td class="liquor-name">금색년화 5년</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">13</td>
+                                <td class="liquor-type">사케</td>
+                                <td class="liquor-name">아라고시 유즈 あらごし ゆず</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">14</td>
+                                <td class="liquor-type">막걸리</td>
+                                <td class="liquor-name">서울효모방 온섶 (제 5안, 25/26 W/S)</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">15</td>
+                                <td class="liquor-type">약주</td>
+                                <td class="liquor-name">감탄주 (기타주류, 과하주 스타일)</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">16</td>
+                                <td class="liquor-type">미드</td>
+                                <td class="liquor-name">허니비 와인</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">17</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">BRICCO QUAGLIA MOSCATO D'ASTI 2022</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">18</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">Louis Perdrier Brut Excellence (9번과 동일)</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">19</td>
+                                <td class="liquor-type">와인</td>
+                                <td class="liquor-name">PORTO VALDOURO TAWNY PORT</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">20</td>
+                                <td class="liquor-type">미드</td>
+                                <td class="liquor-name">코아베스트 사워보쉐</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">21</td>
+                                <td class="liquor-type">리큐르</td>
+                                <td class="liquor-name">복분자주 (비매품)</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">22</td>
+                                <td class="liquor-type">증류주</td>
+                                <td class="liquor-name">삭 SAK 블랙 50</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Table 3: Items 23-33 -->
+                    <table class="liquor-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>주종</th>
+                                <th>주류 이름</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="liquor-number">23</td>
+                                <td class="liquor-type">사케</td>
+                                <td class="liquor-name">스이게이 토쿠베츠 준마이 (Drunken Whale)</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">24</td>
+                                <td class="liquor-type">위스키</td>
+                                <td class="liquor-name">THE GLENLEE 블렌디드 스카치 위스키 BATCH NO:2</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">25</td>
+                                <td class="liquor-type">위스키</td>
+                                <td class="liquor-name">Laproaig Quater cask</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">26</td>
+                                <td class="liquor-type">위스키</td>
+                                <td class="liquor-name">Ardbeg Corryvreckan</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">27</td>
+                                <td class="liquor-type">소주</td>
+                                <td class="liquor-name">백제소주, 술 익는 집 에디션</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">28</td>
+                                <td class="liquor-type">일본 소주</td>
+                                <td class="liquor-name">DAIYAME Hamada Syuzou (고구마 소주)</td>
+                            </tr>
+                            <tr>
+                                <td class="liquor-number">29</td>
+                                <td class="liquor-type">위스키</td>
+                                <td class="liquor-name">필리핀 위스키, 오크 캐스크</td>
+                            </tr>
+                            <tr class="highlight-lemon">
+                                <td class="liquor-number">30</td>
+                                <td class="liquor-type">백주</td>
+                                <td class="liquor-name">서울고량주 레드</td>
+                            </tr>
+                            <tr class="highlight-lemon">
+                                <td class="liquor-number">31</td>
+                                <td class="liquor-type">맥주</td>
+                                <td class="liquor-name">KARIYA 75 브루잉 (Strawberry Fruit 세종, 골든에일, 세션IPA)</td>
+                            </tr>
+                            <tr class="highlight-lemon">
+                                <td class="liquor-number">32</td>
+                                <td class="liquor-type">백주</td>
+                                <td class="liquor-name">한국고량주 극락 75도</td>
+                            </tr>
+                            <tr class="highlight-lemon">
+                                <td class="liquor-number">33</td>
+                                <td class="liquor-type">리큐르</td>
+                                <td class="liquor-name">강소백 리큐르 (복숭아, 유자, 포도)</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- Section 2: Averages Comparison -->
-        <div class="grid">
-            <div class="card">
-                <h2 class="section-title">📊 주종별 평균 점수</h2>
-                <div class="chart-container" style="height: 300px;">
-                    <canvas id="categoryChart"></canvas>
+        <div class="container">
+            <!-- Section 1: Overall Ranking -->
+            <div class="grid">
+                <div class="card full-width">
+                    <h2 class="section-title">🏆 전체 주류 순위</h2>
+                    <div class="custom-legend">
+                        <div class="legend-item"><span class="color-box" style="background: #3B82F6;"></span>전통주
+                        </div>
+                        <div class="legend-item"><span class="color-box" style="background: #F59E0B;"></span>위스키
+                        </div>
+                        <div class="legend-item"><span class="color-box" style="background: #8B5CF6;"></span>와인
+                        </div>
+                        <div class="legend-item"><span class="color-box" style="background: #14B8A6;"></span>기타
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="rankingChart"></canvas>
+                    </div>
                 </div>
             </div>
 
+            <!-- Section 2: Averages Comparison -->
+            <div class="grid">
+                <div class="card">
+                    <h2 class="section-title">📊 주종별 평균 점수</h2>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Section 3: Top 5 by Age -->
+            <h2 class="section-title">🎂 연령대별 Top 5</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3 style="color: var(--secondary-blue); margin-top:0;">20대의 선택</h3>
+                    <ul class="rank-list" id="top20s"></ul>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--accent-purple); margin-top:0;">30대의 선택</h3>
+                    <ul class="rank-list" id="top30s"></ul>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--accent-orange); margin-top:0;">40대의 선택</h3>
+                    <ul class="rank-list" id="top40s"></ul>
+                </div>
+            </div>
+
+            <!-- Section 4: Top 5 by Gender -->
+            <h2 class="section-title">👫 성별 Top 5</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3 style="color: var(--secondary-blue); margin-top:0;">Gentleman's Pick</h3>
+                    <ul class="rank-list" id="topMale"></ul>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--accent-purple); margin-top:0;">Ladies' Pick</h3>
+                    <ul class="rank-list" id="topFemale"></ul>
+                </div>
+            </div>
+
+            <footer>
+                Made by Jongkook | Sooltluck Party, 3rd
+            </footer>
         </div>
 
-        <!-- Section 3: Top 5 by Age -->
-        <h2 class="section-title">🎂 연령대별 Top 5</h2>
-        <div class="grid">
-            <div class="card">
-                <h3 style="color: var(--neon-blue); margin-top:0;">20대의 선택</h3>
-                <ul class="rank-list" id="top20s"></ul>
-            </div>
-            <div class="card">
-                <h3 style="color: var(--neon-pink); margin-top:0;">30대의 선택</h3>
-                <ul class="rank-list" id="top30s"></ul>
-            </div>
-            <div class="card">
-                <h3 style="color: var(--neon-gold); margin-top:0;">40대의 선택</h3>
-                <ul class="rank-list" id="top40s"></ul>
-            </div>
-        </div>
-
-        <!-- Section 4: Top 5 by Gender -->
-        <h2 class="section-title">👫 성별 Top 5</h2>
-        <div class="grid">
-            <div class="card">
-                <h3 style="color: var(--neon-blue); margin-top:0;">Gentlemen's Pick</h3>
-                <ul class="rank-list" id="topMale"></ul>
-            </div>
-            <div class="card">
-                <h3 style="color: var(--neon-pink); margin-top:0;">Ladies' Pick</h3>
-                <ul class="rank-list" id="topFemale"></ul>
-            </div>
-        </div>
-
-        <footer>
-            Made by Jongkook | Sooltluck Party, 3rd
-        </footer>
-    </div>
-
-    <script>
-        // Raw CSV Data
-        const csvData = `
+        <script>
+            // Raw CSV Data
+            const csvData = `
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,나이대,30대,20대,30대,20대,20대,20대,20대,40대,40대,20대,30대,30대,40대,20대,30대,20대,30대,
 ,,,,성별,남,남,남,여,여,남,여,남,남,여,남,여,남,여,남,남,남,
@@ -303,259 +642,259 @@
 ,,,,,2.07,3.73,2.93,3.22,2.87,3.36,3.28,3.31,3.21,3.18,3.14,2.38,3.41,3.66,3.84,3.21,3.10,3.18
 `;
 
-        // --- Data Parsing Logic ---
-        function parseCSV(csv) {
-            const lines = csv.trim().split('\n');
+            // --- Data Parsing Logic ---
+            function parseCSV(csv) {
+                const lines = csv.trim().split('\n');
 
-            // Line 2: Age Groups (Index 5 to 21)
-            const ageLine = lines[1].split(',');
-            const ages = ageLine.slice(5, 22); // 17 evaluators
+                // Line 2: Age Groups (Index 5 to 21)
+                const ageLine = lines[1].split(',');
+                const ages = ageLine.slice(5, 22); // 17 evaluators
 
-            // Line 3: Gender (Index 5 to 21)
-            const genderLine = lines[2].split(',');
-            const genders = genderLine.slice(5, 22);
+                // Line 3: Gender (Index 5 to 21)
+                const genderLine = lines[2].split(',');
+                const genders = genderLine.slice(5, 22);
 
-            // Line 5 onwards: Liquor Data
-            const liquors = [];
+                // Line 5 onwards: Liquor Data
+                const liquors = [];
 
-            for (let i = 4; i < lines.length; i++) {
-                const line = lines[i];
-                if (!line.trim() || line.startsWith(',,,,,')) continue; // Skip empty or summary lines
+                for (let i = 4; i < lines.length; i++) {
+                    const line = lines[i];
+                    if (!line.trim() || line.startsWith(',,,,,')) continue; // Skip empty or summary lines
 
-                // Handle quoted strings (e.g., "Name, with comma")
-                // Simple regex split won't work perfectly for nested commas, but let's try a robust split
-                // Or since we know the structure, we can be smarter.
-                // Actually, let's use a simple regex for CSV splitting that handles quotes
-                const row = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
-                // The above regex is a bit flaky. Let's write a proper simple parser or just handle the specific known quotes.
-                // Given the data, names are in quotes if they contain commas.
+                    // Handle quoted strings (e.g., "Name, with comma")
+                    // Simple regex split won't work perfectly for nested commas, but let's try a robust split
+                    // Or since we know the structure, we can be smarter.
+                    // Actually, let's use a simple regex for CSV splitting that handles quotes
+                    const row = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+                    // The above regex is a bit flaky. Let's write a proper simple parser or just handle the specific known quotes.
+                    // Given the data, names are in quotes if they contain commas.
 
-                // Better approach: Split by comma, but rejoin if inside quotes.
-                const parts = [];
-                let current = '';
-                let inQuote = false;
+                    // Better approach: Split by comma, but rejoin if inside quotes.
+                    const parts = [];
+                    let current = '';
+                    let inQuote = false;
 
-                for (let char of line) {
-                    if (char === '"') {
-                        inQuote = !inQuote;
-                    } else if (char === ',' && !inQuote) {
-                        parts.push(current);
-                        current = '';
-                    } else {
-                        current += char;
-                    }
-                }
-                parts.push(current);
-
-                // Clean up parts (remove surrounding quotes)
-                const cleanParts = parts.map(p => p.trim().replace(/^"|"$/g, ''));
-
-                const isTraditional = cleanParts[1] === 'O';
-                const type = cleanParts[2];
-                const name = cleanParts[3];
-                const scores = cleanParts.slice(5, 22).map(s => s === '' ? null : parseFloat(s));
-
-                // Calculate average (ignoring nulls)
-                const validScores = scores.filter(s => s !== null);
-                const average = validScores.reduce((a, b) => a + b, 0) / validScores.length;
-
-                liquors.push({
-                    isTraditional,
-                    type,
-                    name,
-                    scores,
-                    average
-                });
-            }
-
-            return { ages, genders, liquors };
-        }
-
-        const data = parseCSV(csvData);
-
-        // --- Data Processing ---
-
-        // 1. Overall Ranking
-        const sortedByAvg = [...data.liquors].sort((a, b) => b.average - a.average);
-
-        // 2. Category Averages
-        function getCategoryAvg(filterFn) {
-            const filtered = data.liquors.filter(filterFn);
-            if (filtered.length === 0) return 0;
-            const sum = filtered.reduce((acc, curr) => acc + curr.average, 0);
-            return sum / filtered.length;
-        }
-
-        const avgTraditional = getCategoryAvg(l => l.isTraditional);
-        const avgWhisky = getCategoryAvg(l => l.type.includes('위스키'));
-        const avgWine = getCategoryAvg(l => l.type.includes('와인'));
-        const avgOverall = getCategoryAvg(() => true);
-
-        // 3. Top 5 by Age/Gender
-        function getTop5By(filterIndexFn) {
-            // Calculate average for each liquor based ONLY on specific evaluators
-            const ranked = data.liquors.map(l => {
-                const relevantScores = l.scores.filter((_, idx) => filterIndexFn(idx));
-                const validScores = relevantScores.filter(s => s !== null);
-                const avg = validScores.length ? validScores.reduce((a, b) => a + b, 0) / validScores.length : -1;
-                return { ...l, specificAvg: avg };
-            }).sort((a, b) => b.specificAvg - a.specificAvg);
-
-            return ranked.slice(0, 5);
-        }
-
-        const top20s = getTop5By(idx => data.ages[idx] === '20대');
-        const top30s = getTop5By(idx => data.ages[idx] === '30대');
-        const top40s = getTop5By(idx => data.ages[idx] === '40대');
-
-        const topMale = getTop5By(idx => data.genders[idx] === '남');
-        const topFemale = getTop5By(idx => data.genders[idx] === '여');
-
-        // --- Rendering ---
-
-        // Chart Global Defaults
-        Chart.defaults.color = '#a0a0a0';
-        Chart.defaults.font.family = "'Outfit', sans-serif";
-
-        // 1. Ranking Chart
-        new Chart(document.getElementById('rankingChart'), {
-            data: {
-                labels: sortedByAvg.map(l => l.name.length > 15 ? l.name.substring(0, 15) + '...' : l.name),
-                datasets: [
-                    {
-                        type: 'bar',
-                        label: '평균 점수',
-                        data: sortedByAvg.map(l => l.average),
-                        backgroundColor: sortedByAvg.map(l => {
-                            if (l.type.includes('위스키')) return 'rgba(255, 215, 0, 0.7)'; // Gold
-                            if (l.type.includes('와인')) return 'rgba(255, 0, 255, 0.7)'; // Pink
-                            if (l.isTraditional) return 'rgba(0, 255, 150, 0.7)'; // Green (Traditional)
-                            return 'rgba(0, 150, 255, 0.7)'; // Blue (Others)
-                        }),
-                        borderColor: sortedByAvg.map(l => {
-                            if (l.type.includes('위스키')) return '#ffd700';
-                            if (l.type.includes('와인')) return '#ff00ff';
-                            if (l.isTraditional) return '#00ff96';
-                            return '#0096ff';
-                        }),
-                        borderWidth: 1,
-                        order: 2
-                    },
-                    {
-                        type: 'line',
-                        label: `전체 평균 (29개, ${avgOverall.toFixed(2)})`,
-                        data: Array(sortedByAvg.length).fill(avgOverall),
-                        borderColor: '#ffffff',
-                        borderWidth: 2,
-                        borderDash: [5, 5],
-                        pointRadius: 0,
-                        fill: false,
-                        order: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: { color: '#a0a0a0' }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)} / 5.0`
+                    for (let char of line) {
+                        if (char === '"') {
+                            inQuote = !inQuote;
+                        } else if (char === ',' && !inQuote) {
+                            parts.push(current);
+                            current = '';
+                        } else {
+                            current += char;
                         }
                     }
-                },
-                scales: {
-                    y: {
-                        min: 1.0,
-                        max: 4.5,
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                    },
-                    x: {
-                        grid: { display: false }
-                    }
+                    parts.push(current);
+
+                    // Clean up parts (remove surrounding quotes)
+                    const cleanParts = parts.map(p => p.trim().replace(/^"|"$/g, ''));
+
+                    const isTraditional = cleanParts[1] === 'O';
+                    const type = cleanParts[2];
+                    const name = cleanParts[3];
+                    const scores = cleanParts.slice(5, 22).map(s => s === '' ? null : parseFloat(s));
+
+                    // Calculate average (ignoring nulls)
+                    const validScores = scores.filter(s => s !== null);
+                    const average = validScores.reduce((a, b) => a + b, 0) / validScores.length;
+
+                    liquors.push({
+                        isTraditional,
+                        type,
+                        name,
+                        scores,
+                        average
+                    });
                 }
+
+                return { ages, genders, liquors };
             }
-        });
 
-        const countTraditional = data.liquors.filter(l => l.isTraditional).length;
-        const countWhisky = data.liquors.filter(l => l.type.includes('위스키')).length;
-        const countWine = data.liquors.filter(l => l.type.includes('와인')).length;
+            const data = parseCSV(csvData);
 
-        // 2. Category Chart
-        new Chart(document.getElementById('categoryChart'), {
-            data: {
-                labels: [`전통주 (${countTraditional})`, `위스키 (${countWhisky})`, `와인 (${countWine})`],
-                datasets: [
-                    {
-                        type: 'bar',
-                        label: '평균 점수',
-                        data: [avgTraditional, avgWhisky, avgWine],
-                        backgroundColor: [
-                            'rgba(0, 255, 150, 0.7)', // Traditional (Green)
-                            'rgba(255, 215, 0, 0.7)', // Whisky (Gold)
-                            'rgba(255, 0, 255, 0.7)', // Wine (Pink)
-                        ],
-                        borderColor: [
-                            '#00ff96',
-                            '#ffd700',
-                            '#ff00ff',
-                        ],
-                        borderWidth: 1,
-                        order: 2
+            // --- Data Processing ---
+
+            // 1. Overall Ranking
+            const sortedByAvg = [...data.liquors].sort((a, b) => b.average - a.average);
+
+            // 2. Category Averages
+            function getCategoryAvg(filterFn) {
+                const filtered = data.liquors.filter(filterFn);
+                if (filtered.length === 0) return 0;
+                const sum = filtered.reduce((acc, curr) => acc + curr.average, 0);
+                return sum / filtered.length;
+            }
+
+            const avgTraditional = getCategoryAvg(l => l.isTraditional);
+            const avgWhisky = getCategoryAvg(l => l.type.includes('위스키'));
+            const avgWine = getCategoryAvg(l => l.type.includes('와인'));
+            const avgOverall = getCategoryAvg(() => true);
+
+            // 3. Top 5 by Age/Gender
+            function getTop5By(filterIndexFn) {
+                // Calculate average for each liquor based ONLY on specific evaluators
+                const ranked = data.liquors.map(l => {
+                    const relevantScores = l.scores.filter((_, idx) => filterIndexFn(idx));
+                    const validScores = relevantScores.filter(s => s !== null);
+                    const avg = validScores.length ? validScores.reduce((a, b) => a + b, 0) / validScores.length : -1;
+                    return { ...l, specificAvg: avg };
+                }).sort((a, b) => b.specificAvg - a.specificAvg);
+
+                return ranked.slice(0, 5);
+            }
+
+            const top20s = getTop5By(idx => data.ages[idx] === '20대');
+            const top30s = getTop5By(idx => data.ages[idx] === '30대');
+            const top40s = getTop5By(idx => data.ages[idx] === '40대');
+
+            const topMale = getTop5By(idx => data.genders[idx] === '남');
+            const topFemale = getTop5By(idx => data.genders[idx] === '여');
+
+            // --- Rendering ---
+
+            // Chart Global Defaults
+            Chart.defaults.color = '#6B7280';
+            Chart.defaults.font.family = "'Outfit', sans-serif";
+
+            // 1. Ranking Chart
+            new Chart(document.getElementById('rankingChart'), {
+                data: {
+                    labels: sortedByAvg.map(l => l.name.length > 15 ? l.name.substring(0, 15) + '...' : l.name),
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: '평균 점수',
+                            data: sortedByAvg.map(l => l.average),
+                            backgroundColor: sortedByAvg.map(l => {
+                                if (l.type.includes('위스키')) return 'rgba(245, 158, 11, 0.8)'; // Amber
+                                if (l.type.includes('와인')) return 'rgba(139, 92, 246, 0.8)'; // Purple
+                                if (l.isTraditional) return 'rgba(59, 130, 246, 0.8)'; // Blue (Traditional)
+                                return 'rgba(20, 184, 166, 0.8)'; // Teal (Others)
+                            }),
+                            borderColor: sortedByAvg.map(l => {
+                                if (l.type.includes('위스키')) return '#F59E0B';
+                                if (l.type.includes('와인')) return '#8B5CF6';
+                                if (l.isTraditional) return '#3B82F6';
+                                return '#14B8A6';
+                            }),
+                            borderWidth: 1,
+                            order: 2
+                        },
+                        {
+                            type: 'line',
+                            label: `전체 평균 (29개, ${avgOverall.toFixed(2)})`,
+                            data: Array(sortedByAvg.length).fill(avgOverall),
+                            borderColor: '#ffffff',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            order: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: { color: '#6B7280' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)} / 5.0`
+                            }
+                        }
                     },
-                    {
-                        type: 'line',
-                        label: `전체 평균 (29개, ${avgOverall.toFixed(2)})`,
-                        data: [avgOverall, avgOverall, avgOverall],
-                        borderColor: '#ffffff',
-                        borderWidth: 2,
-                        borderDash: [5, 5],
-                        pointRadius: 0,
-                        fill: false,
-                        order: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: { color: '#a0a0a0' }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)} / 5.0`
+                    scales: {
+                        y: {
+                            min: 1.0,
+                            max: 4.5,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
                         }
                     }
+                }
+            });
+
+            const countTraditional = data.liquors.filter(l => l.isTraditional).length;
+            const countWhisky = data.liquors.filter(l => l.type.includes('위스키')).length;
+            const countWine = data.liquors.filter(l => l.type.includes('와인')).length;
+
+            // 2. Category Chart
+            new Chart(document.getElementById('categoryChart'), {
+                data: {
+                    labels: [`전통주 (${countTraditional})`, `위스키 (${countWhisky})`, `와인 (${countWine})`],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: '평균 점수',
+                            data: [avgTraditional, avgWhisky, avgWine],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.8)', // Traditional (Blue)
+                                'rgba(245, 158, 11, 0.8)', // Whisky (Amber)
+                                'rgba(139, 92, 246, 0.8)', // Wine (Purple)
+                            ],
+                            borderColor: [
+                                '#3B82F6',
+                                '#F59E0B',
+                                '#8B5CF6',
+                            ],
+                            borderWidth: 1,
+                            order: 2
+                        },
+                        {
+                            type: 'line',
+                            label: `전체 평균 (29개, ${avgOverall.toFixed(2)})`,
+                            data: [avgOverall, avgOverall, avgOverall],
+                            borderColor: '#ffffff',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            order: 1
+                        }
+                    ]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 5,
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: { color: '#6B7280' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)} / 5.0`
+                            }
+                        }
                     },
-                    x: {
-                        grid: { display: false }
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
                     }
                 }
-            }
-        });
+            });
 
 
 
-        // Render Lists
-        function renderList(elementId, items) {
-            const el = document.getElementById(elementId);
-            items.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.className = 'rank-item';
-                li.innerHTML = `
+            // Render Lists
+            function renderList(elementId, items) {
+                const el = document.getElementById(elementId);
+                items.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'rank-item';
+                    li.innerHTML = `
                 <div class="rank-num">${index + 1}</div>
                 <div class="rank-info">
                     <span class="rank-name">${item.name}</span>
@@ -563,17 +902,17 @@
                 </div>
                 <div class="rank-score">${item.specificAvg.toFixed(2)}</div>
             `;
-                el.appendChild(li);
-            });
-        }
+                    el.appendChild(li);
+                });
+            }
 
-        renderList('top20s', top20s);
-        renderList('top30s', top30s);
-        renderList('top40s', top40s);
-        renderList('topMale', topMale);
-        renderList('topFemale', topFemale);
+            renderList('top20s', top20s);
+            renderList('top30s', top30s);
+            renderList('top40s', top40s);
+            renderList('topMale', topMale);
+            renderList('topFemale', topFemale);
 
-    </script>
+        </script>
 </body>
 
 </html>
