@@ -1322,11 +1322,14 @@
                             timeouts.push(timer);
                         });
                     } else {
-                        timeouts.forEach(t => clearTimeout(t));
-                        timeouts = [];
-                        paragraphs.forEach(p => {
-                            p.classList.remove('visible');
-                        });
+                        // Only remove visible class on desktop to prevent text disappearing on mobile
+                        if (window.innerWidth > 900) {
+                            timeouts.forEach(t => clearTimeout(t));
+                            timeouts = [];
+                            paragraphs.forEach(p => {
+                                p.classList.remove('visible');
+                            });
+                        }
                     }
                 }, { threshold: 0.2, rootMargin: '-100px 0px' });
                 
